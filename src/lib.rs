@@ -128,6 +128,7 @@ pub mod term {
 
         match color {
             "red" => {
+                #[cfg(debug_assertions)]
                 println!("Found: {}", color);
                 type_colored_char(&s2, get_red_char);
                 
@@ -141,6 +142,7 @@ pub mod term {
                 */
             },
             "blue" => {
+                #[cfg(debug_assertions)]
                 println!("Found: {}", color);
                 for n in 0..s2.len()-1 {
                     // print!("{}", &s[n..n+1].red());
@@ -150,6 +152,7 @@ pub mod term {
                 }
             },
             "green" => {
+                #[cfg(debug_assertions)]
                 println!("Found: {}", color);
                 for n in 0..s2.len()-1 {
                     // print!("{}", &s[n..n+1].red());
