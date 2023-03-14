@@ -1,7 +1,6 @@
 #[macro_use]
+// Using this allows you to have static that required code to be executed at runtime in order to be initalized
 extern crate lazy_static;
-
-
 
 use std::{thread, time};
 
@@ -17,18 +16,19 @@ fn read_file(path_to_file: &str) -> String{
         .expect("Should be able to read the file."); // -> Result<String>
     contents
 }
-
+/// Print file content
 fn print_file_contents(input: &String){
     println!("File contents: {input}");
 }
 
+/// Sleep for milliseconds
 pub fn mssleep(ms_to_wait: u64)
 {
     let time_to_wait = time::Duration::from_millis(ms_to_wait);
     thread::sleep(time_to_wait);
 }
 
-/// Takes two &str(string slices)/string literals and concatenates both
+/// Takes two &str(string slices)/string literals and concatenates both then returns combined string
 pub fn cat(str1: &str, str2: &str) -> String {
     format!("{}{}", str1, str2)
 }
@@ -50,6 +50,7 @@ pub mod term {
 
     /** Type out text**/
     // Should probably combine these functions by letting it take a trait object
+    /// Print out text with typewriter effect
     pub fn type_text(s: &str) 
     {
         let ms = 50;
@@ -61,6 +62,7 @@ pub mod term {
         }
     }
     
+    /// Print out text with typewriter effect in X ms
     pub fn type_text_in_ms(s: &str, ms: u64) 
     {
         
@@ -72,6 +74,8 @@ pub mod term {
         }
     }
 
+    /// This doesn't work at all 
+    #[deprecated]
     pub fn type_color(s: ColoredString)
     {
         let sleep_time = std::time::Duration::from_millis(*PAUSE_TIME);
@@ -82,6 +86,8 @@ pub mod term {
         }
     }
 
+    /// This doesn't work at all 
+    #[deprecated]
     fn type_text_colored_in_ms(s: ColoredString, ms: u64) 
     {
         let sleep_time = std::time::Duration::from_millis(ms);
@@ -93,7 +99,7 @@ pub mod term {
     }
     
 
-    /* Test fn*/
+    /// Get information from input string
     pub fn analyze_colored_string(s: ColoredString)
     {
         let applied_color = s.fgcolor();
@@ -111,6 +117,11 @@ pub mod term {
         println!(" ");
     }
     
+    /// Print out text with typewriter effect with a color
+    /// e.g.
+    /// ```
+    /// type_text_colored("red", "i'm red!!!");
+    /// ```
     pub fn type_text_colored(color: &str, s: &str)
     {
         let s2 = cat(s, " ");
@@ -120,12 +131,14 @@ pub mod term {
                 println!("Found: {}", color);
                 type_colored_char(&s2, get_red_char);
                 
+                /*
                 for n in 0..s2.len()-1 {
                     // print!("{}", &s[n..n+1].red());
                     print!("{}", get_red_char(&s2, n));
                     std::io::stdout().flush().expect("Flushing to succeed");
                     std::thread::sleep(std::time::Duration::from_millis(20));
                 }
+                */
             },
             "blue" => {
                 println!("Found: {}", color);
