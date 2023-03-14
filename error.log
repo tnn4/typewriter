@@ -1,0 +1,1125 @@
+    Checking turtles_down v0.1.0 (/media/t/External/projects/terminal/turtles-all-the-way-down/turtles_down)
+error: expected `;`, found `print`
+   --> src/lib.rs:127:25
+    |
+127 |         s[n..n+1].blue()
+    |                         ^ help: add `;` here
+128 |          // print!("{}", &s[n..n+1].red());
+129 |             print!("{}", f(s,n));
+    |             ----- unexpected token
+
+warning: Hard linking files in the incremental compilation cache failed. Copying files instead. Consider moving the cache directory to a file system which supports hard linking in session dir `/media/t/External/projects/terminal/turtles-all-the-way-down/turtles_down/target/debug/incremental/turtles_down-1g7skovq5kqgn/s-gj37ypx9eo-1gux8zu-working`
+
+error[E0428]: the name `type_text_with_color` is defined multiple times
+  --> src/lib.rs:80:5
+   |
+45 |     fn type_text_with_color(s: ColoredString, ms: u64) 
+   |     -------------------------------------------------- previous definition of the value `type_text_with_color` here
+...
+80 |     fn type_text_with_color(s: String, color: &str)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `type_text_with_color` redefined here
+   |
+   = note: `type_text_with_color` must be defined only once in the value namespace of this module
+
+error[E0428]: the name `get_red_substring` is defined multiple times
+   --> src/lib.rs:141:5
+    |
+114 |     fn get_red_substring(s: &String, n: usize) -> ColoredString
+    |     ----------------------------------------------------------- previous definition of the value `get_red_substring` here
+...
+141 |     fn get_red_substring(s: &String, n: usize) -> ColoredString
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `get_red_substring` redefined here
+    |
+    = note: `get_red_substring` must be defined only once in the value namespace of this module
+
+error[E0428]: the name `get_green_substring` is defined multiple times
+   --> src/lib.rs:146:5
+    |
+119 |     fn get_green_substring(s: &String, n: usize) -> ColoredString
+    |     ------------------------------------------------------------- previous definition of the value `get_green_substring` here
+...
+146 |     fn get_green_substring(s: &String, n: usize) -> ColoredString
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `get_green_substring` redefined here
+    |
+    = note: `get_green_substring` must be defined only once in the value namespace of this module
+
+error[E0428]: the name `get_blue_substring` is defined multiple times
+   --> src/lib.rs:151:5
+    |
+125 |     fn get_blue_substring(s: &String, n: usize) -> ColoredString
+    |     ------------------------------------------------------------ previous definition of the value `get_blue_substring` here
+...
+151 |     fn get_blue_substring(s: &String, n: usize) -> ColoredString
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `get_blue_substring` redefined here
+    |
+    = note: `get_blue_substring` must be defined only once in the value namespace of this module
+
+error[E0432]: unresolved import `crate::scroll`
+  --> src/turtle_down.rs:17:5
+   |
+17 | use crate::scroll; // --> lib.rs scroll
+   |     ^^^^^^^^^^^^^ no `scroll` in the root
+
+error[E0432]: unresolved import `crate::scroll`
+  --> src/turtle_down.rs:55:5
+   |
+55 | use crate::scroll;
+   |     ^^^^^^^^^^^^^ no `scroll` in the root
+
+error[E0433]: failed to resolve: use of undeclared type `Color`
+  --> src/lib.rs:61:18
+   |
+61 |             Some(Color::Red) => println!("The color was RED!"),
+   |                  ^^^^^ use of undeclared type `Color`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `time`
+  --> src/lib.rs:31:28
+   |
+31 |         let time_to_wait = time::Duration::from_millis(ms_to_wait);
+   |                            ^^^^ use of undeclared crate or module `time`
+   |
+help: consider importing one of these items
+   |
+29 |     use core::time::Duration;
+   |
+29 |     use crate::time::Duration;
+   |
+29 |     use std::time::Duration;
+   |
+help: if you import `Duration`, refer to it directly
+   |
+31 -         let time_to_wait = time::Duration::from_millis(ms_to_wait);
+31 +         let time_to_wait = Duration::from_millis(ms_to_wait);
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:45:32
+   |
+45 |     fn type_text_with_color(s: ColoredString, ms: u64) 
+   |                                ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+29 |     use colored::ColoredString;
+   |
+29 |     use crate::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:56:34
+   |
+56 |     fn analyze_colored_string(s: ColoredString)
+   |                                  ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+29 |     use colored::ColoredString;
+   |
+29 |     use crate::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:98:75
+   |
+98 |     fn print_colored_substring(s: &String, f: fn(s: &String, n: usize) -> ColoredString )
+   |                                                                           ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+29 |     use colored::ColoredString;
+   |
+29 |     use crate::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:114:51
+    |
+114 |     fn get_red_substring(s: &String, n: usize) -> ColoredString
+    |                                                   ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:119:53
+    |
+119 |     fn get_green_substring(s: &String, n: usize) -> ColoredString
+    |                                                     ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:125:52
+    |
+125 |     fn get_blue_substring(s: &String, n: usize) -> ColoredString
+    |                                                    ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:141:51
+    |
+141 |     fn get_red_substring(s: &String, n: usize) -> ColoredString
+    |                                                   ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:146:53
+    |
+146 |     fn get_green_substring(s: &String, n: usize) -> ColoredString
+    |                                                     ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:151:52
+    |
+151 |     fn get_blue_substring(s: &String, n: usize) -> ColoredString
+    |                                                    ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+warning: unused imports: `thread`, `time`
+ --> src/lib.rs:1:11
+  |
+1 | use std::{thread, time};
+  |           ^^^^^^  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `std::io::Write`
+ --> src/lib.rs:3:5
+  |
+3 | use std::io::Write;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/lib.rs:7:5
+  |
+7 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Colorize`
+ --> src/lib.rs:9:5
+  |
+9 | use colored::Colorize;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::ColoredString`
+  --> src/lib.rs:10:5
+   |
+10 | use colored::ColoredString;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Color`
+  --> src/lib.rs:11:5
+   |
+11 | use colored::Color;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::io::Write`
+ --> src/turtle_down.rs:6:5
+  |
+6 | use std::io::Write;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::fs`
+ --> src/turtle_down.rs:8:5
+  |
+8 | use std::fs;
+  |     ^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> src/turtle_down.rs:10:5
+   |
+10 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Colorize`
+  --> src/turtle_down.rs:12:5
+   |
+12 | use colored::Colorize;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::ColoredString`
+  --> src/turtle_down.rs:13:5
+   |
+13 | use colored::ColoredString;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Color`
+  --> src/turtle_down.rs:14:5
+   |
+14 | use colored::Color;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::io::Write`
+  --> src/turtle_down.rs:44:5
+   |
+44 | use std::io::Write;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::fs`
+  --> src/turtle_down.rs:46:5
+   |
+46 | use std::fs;
+   |     ^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> src/turtle_down.rs:48:5
+   |
+48 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Colorize`
+  --> src/turtle_down.rs:50:5
+   |
+50 | use colored::Colorize;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::ColoredString`
+  --> src/turtle_down.rs:51:5
+   |
+51 | use colored::ColoredString;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Color`
+  --> src/turtle_down.rs:52:5
+   |
+52 | use colored::Color;
+   |     ^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `thread`
+  --> src/lib.rs:32:9
+   |
+32 |         thread::sleep(time_to_wait);
+   |         ^^^^^^ use of undeclared crate or module `thread`
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:40:31
+     |
+40   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:50:31
+     |
+50   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:91:31
+     |
+91   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:103:31
+     |
+103  |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `red` found for type `str` in the current scope
+   --> src/lib.rs:116:19
+    |
+116 |         s[n..n+1].red()
+    |                   ^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:69:8
+    |
+69  |     fn red(self) -> ColoredString
+    |        --- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+29  |     use colored::Colorize;
+    |
+
+error[E0599]: no method named `green` found for type `str` in the current scope
+   --> src/lib.rs:122:19
+    |
+122 |         s[n..n+1].green()
+    |                   ^^^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:75:8
+    |
+75  |     fn green(self) -> ColoredString
+    |        ----- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+29  |     use colored::Colorize;
+    |
+
+error[E0425]: cannot find function `f` in this scope
+   --> src/lib.rs:129:26
+    |
+129 |             print!("{}", f(s,n));
+    |                          ^ help: a local variable with a similar name exists: `n`
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:130:31
+     |
+130  |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `red` found for type `str` in the current scope
+   --> src/lib.rs:143:19
+    |
+143 |         s[n..n+1].red()
+    |                   ^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:69:8
+    |
+69  |     fn red(self) -> ColoredString
+    |        --- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+29  |     use colored::Colorize;
+    |
+
+error[E0599]: no method named `green` found for type `str` in the current scope
+   --> src/lib.rs:148:19
+    |
+148 |         s[n..n+1].green()
+    |                   ^^^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:75:8
+    |
+75  |     fn green(self) -> ColoredString
+    |        ----- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+29  |     use colored::Colorize;
+    |
+
+error[E0599]: no method named `blue` found for type `str` in the current scope
+   --> src/lib.rs:153:19
+    |
+153 |         s[n..n+1].blue()
+    |                   ^^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:87:8
+    |
+87  |     fn blue(self) -> ColoredString
+    |        ---- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+29  |     use colored::Colorize;
+    |
+
+Some errors have detailed explanations: E0412, E0425, E0428, E0432, E0433, E0599.
+For more information about an error, try `rustc --explain E0412`.
+warning: `turtles_down` (lib) generated 19 warnings
+error: could not compile `turtles_down` due to 30 previous errors; 19 warnings emitted
+    Checking turtles_down v0.1.0 (/media/t/External/projects/terminal/turtles-all-the-way-down/turtles_down)
+error: expected `;`, found `print`
+   --> src/lib.rs:127:25
+    |
+127 |         s[n..n+1].blue()
+    |                         ^ help: add `;` here
+128 |          // print!("{}", &s[n..n+1].red());
+129 |             print!("{}", f(s,n));
+    |             ----- unexpected token
+
+warning: Hard linking files in the incremental compilation cache failed. Copying files instead. Consider moving the cache directory to a file system which supports hard linking in session dir `/media/t/External/projects/terminal/turtles-all-the-way-down/turtles_down/target/debug/incremental/turtles_down-1g7skovq5kqgn/s-gj380rpxsu-qv7zn7-working`
+
+error[E0432]: unresolved import `crate::scroll`
+  --> src/turtle_down.rs:17:5
+   |
+17 | use crate::scroll; // --> lib.rs scroll
+   |     ^^^^^^^^^^^^^ no `scroll` in the root
+
+error[E0432]: unresolved import `crate::scroll`
+  --> src/turtle_down.rs:55:5
+   |
+55 | use crate::scroll;
+   |     ^^^^^^^^^^^^^ no `scroll` in the root
+
+error[E0433]: failed to resolve: use of undeclared type `Color`
+  --> src/lib.rs:61:18
+   |
+61 |             Some(Color::Red) => println!("The color was RED!"),
+   |                  ^^^^^ use of undeclared type `Color`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `time`
+  --> src/lib.rs:31:28
+   |
+31 |         let time_to_wait = time::Duration::from_millis(ms_to_wait);
+   |                            ^^^^ use of undeclared crate or module `time`
+   |
+help: consider importing one of these items
+   |
+29 |     use core::time::Duration;
+   |
+29 |     use crate::time::Duration;
+   |
+29 |     use std::time::Duration;
+   |
+help: if you import `Duration`, refer to it directly
+   |
+31 -         let time_to_wait = time::Duration::from_millis(ms_to_wait);
+31 +         let time_to_wait = Duration::from_millis(ms_to_wait);
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:45:32
+   |
+45 |     fn type_text_with_color(s: ColoredString, ms: u64) 
+   |                                ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+29 |     use colored::ColoredString;
+   |
+29 |     use crate::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:56:34
+   |
+56 |     fn analyze_colored_string(s: ColoredString)
+   |                                  ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+29 |     use colored::ColoredString;
+   |
+29 |     use crate::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:98:75
+   |
+98 |     fn print_colored_substring(s: &String, f: fn(s: &String, n: usize) -> ColoredString )
+   |                                                                           ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+29 |     use colored::ColoredString;
+   |
+29 |     use crate::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:114:51
+    |
+114 |     fn get_red_substring(s: &String, n: usize) -> ColoredString
+    |                                                   ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:119:53
+    |
+119 |     fn get_green_substring(s: &String, n: usize) -> ColoredString
+    |                                                     ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:125:52
+    |
+125 |     fn get_blue_substring(s: &String, n: usize) -> ColoredString
+    |                                                    ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+29  |     use colored::ColoredString;
+    |
+29  |     use crate::ColoredString;
+    |
+
+warning: unused imports: `thread`, `time`
+ --> src/lib.rs:1:11
+  |
+1 | use std::{thread, time};
+  |           ^^^^^^  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `std::io::Write`
+ --> src/lib.rs:3:5
+  |
+3 | use std::io::Write;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/lib.rs:7:5
+  |
+7 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Colorize`
+ --> src/lib.rs:9:5
+  |
+9 | use colored::Colorize;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::ColoredString`
+  --> src/lib.rs:10:5
+   |
+10 | use colored::ColoredString;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Color`
+  --> src/lib.rs:11:5
+   |
+11 | use colored::Color;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::io::Write`
+ --> src/turtle_down.rs:6:5
+  |
+6 | use std::io::Write;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::fs`
+ --> src/turtle_down.rs:8:5
+  |
+8 | use std::fs;
+  |     ^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> src/turtle_down.rs:10:5
+   |
+10 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Colorize`
+  --> src/turtle_down.rs:12:5
+   |
+12 | use colored::Colorize;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::ColoredString`
+  --> src/turtle_down.rs:13:5
+   |
+13 | use colored::ColoredString;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Color`
+  --> src/turtle_down.rs:14:5
+   |
+14 | use colored::Color;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::io::Write`
+  --> src/turtle_down.rs:44:5
+   |
+44 | use std::io::Write;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::fs`
+  --> src/turtle_down.rs:46:5
+   |
+46 | use std::fs;
+   |     ^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> src/turtle_down.rs:48:5
+   |
+48 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Colorize`
+  --> src/turtle_down.rs:50:5
+   |
+50 | use colored::Colorize;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::ColoredString`
+  --> src/turtle_down.rs:51:5
+   |
+51 | use colored::ColoredString;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `colored::Color`
+  --> src/turtle_down.rs:52:5
+   |
+52 | use colored::Color;
+   |     ^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `thread`
+  --> src/lib.rs:32:9
+   |
+32 |         thread::sleep(time_to_wait);
+   |         ^^^^^^ use of undeclared crate or module `thread`
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:40:31
+     |
+40   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:50:31
+     |
+50   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:91:31
+     |
+91   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:103:31
+     |
+103  |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `red` found for type `str` in the current scope
+   --> src/lib.rs:116:19
+    |
+116 |         s[n..n+1].red()
+    |                   ^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:69:8
+    |
+69  |     fn red(self) -> ColoredString
+    |        --- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+29  |     use colored::Colorize;
+    |
+
+error[E0599]: no method named `green` found for type `str` in the current scope
+   --> src/lib.rs:122:19
+    |
+122 |         s[n..n+1].green()
+    |                   ^^^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:75:8
+    |
+75  |     fn green(self) -> ColoredString
+    |        ----- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+29  |     use colored::Colorize;
+    |
+
+error[E0425]: cannot find function `f` in this scope
+   --> src/lib.rs:129:26
+    |
+129 |             print!("{}", f(s,n));
+    |                          ^ help: a local variable with a similar name exists: `n`
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:130:31
+     |
+130  |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+29   |     use std::io::Write;
+     |
+
+Some errors have detailed explanations: E0412, E0425, E0432, E0433, E0599.
+For more information about an error, try `rustc --explain E0412`.
+warning: `turtles_down` (lib) generated 19 warnings
+error: could not compile `turtles_down` due to 20 previous errors; 19 warnings emitted
+    Checking turtles_down v0.1.0 (/media/t/External/projects/terminal/turtles-all-the-way-down/turtles_down)
+error: expected `;`, found `print`
+   --> src/lib.rs:120:25
+    |
+120 |         s[n..n+1].blue()
+    |                         ^ help: add `;` here
+121 |          // print!("{}", &s[n..n+1].red());
+122 |             print!("{}", f(s,n));
+    |             ----- unexpected token
+
+warning: Hard linking files in the incremental compilation cache failed. Copying files instead. Consider moving the cache directory to a file system which supports hard linking in session dir `/media/t/External/projects/terminal/turtles-all-the-way-down/turtles_down/target/debug/incremental/turtles_down-1g7skovq5kqgn/s-gj384b38qy-1xc2r4q-working`
+
+error[E0433]: failed to resolve: use of undeclared type `Color`
+  --> src/lib.rs:54:18
+   |
+54 |             Some(Color::Red) => println!("The color was RED!"),
+   |                  ^^^^^ use of undeclared type `Color`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `time`
+  --> src/lib.rs:24:28
+   |
+24 |         let time_to_wait = time::Duration::from_millis(ms_to_wait);
+   |                            ^^^^ use of undeclared crate or module `time`
+   |
+help: consider importing one of these items
+   |
+22 |     use core::time::Duration;
+   |
+22 |     use std::time::Duration;
+   |
+help: if you import `Duration`, refer to it directly
+   |
+24 -         let time_to_wait = time::Duration::from_millis(ms_to_wait);
+24 +         let time_to_wait = Duration::from_millis(ms_to_wait);
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:38:32
+   |
+38 |     fn type_text_with_color(s: ColoredString, ms: u64) 
+   |                                ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+22 |     use colored::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:49:34
+   |
+49 |     fn analyze_colored_string(s: ColoredString)
+   |                                  ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+22 |     use colored::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+  --> src/lib.rs:91:75
+   |
+91 |     fn print_colored_substring(s: &String, f: fn(s: &String, n: usize) -> ColoredString )
+   |                                                                           ^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+22 |     use colored::ColoredString;
+   |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:107:51
+    |
+107 |     fn get_red_substring(s: &String, n: usize) -> ColoredString
+    |                                                   ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+22  |     use colored::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:112:53
+    |
+112 |     fn get_green_substring(s: &String, n: usize) -> ColoredString
+    |                                                     ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+22  |     use colored::ColoredString;
+    |
+
+error[E0412]: cannot find type `ColoredString` in this scope
+   --> src/lib.rs:118:52
+    |
+118 |     fn get_blue_substring(s: &String, n: usize) -> ColoredString
+    |                                                    ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+22  |     use colored::ColoredString;
+    |
+
+warning: unused import: `std::path::Path`
+ --> src/lib.rs:3:5
+  |
+3 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+error[E0433]: failed to resolve: use of undeclared crate or module `thread`
+  --> src/lib.rs:25:9
+   |
+25 |         thread::sleep(time_to_wait);
+   |         ^^^^^^ use of undeclared crate or module `thread`
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:33:31
+     |
+33   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+22   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:43:31
+     |
+43   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+22   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:84:31
+     |
+84   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+22   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:96:31
+     |
+96   |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+22   |     use std::io::Write;
+     |
+
+error[E0599]: no method named `red` found for type `str` in the current scope
+   --> src/lib.rs:109:19
+    |
+109 |         s[n..n+1].red()
+    |                   ^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:69:8
+    |
+69  |     fn red(self) -> ColoredString
+    |        --- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+22  |     use colored::Colorize;
+    |
+
+error[E0599]: no method named `green` found for type `str` in the current scope
+   --> src/lib.rs:115:19
+    |
+115 |         s[n..n+1].green()
+    |                   ^^^^^ method not found in `str`
+    |
+   ::: /home/t/.cargo/registry/src/github.com-1ecc6299db9ec823/colored-2.0.0/src/lib.rs:75:8
+    |
+75  |     fn green(self) -> ColoredString
+    |        ----- the method is available for `str` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+22  |     use colored::Colorize;
+    |
+
+error[E0425]: cannot find function `f` in this scope
+   --> src/lib.rs:122:26
+    |
+122 |             print!("{}", f(s,n));
+    |                          ^ help: a local variable with a similar name exists: `n`
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> src/lib.rs:123:31
+     |
+123  |             std::io::stdout().flush().expect("Flushing to succeed");
+     |                               ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/t/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1506:8
+     |
+1506 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+22   |     use std::io::Write;
+     |
+
+Some errors have detailed explanations: E0412, E0425, E0433, E0599.
+For more information about an error, try `rustc --explain E0412`.
+warning: `turtles_down` (lib) generated 2 warnings
+error: could not compile `turtles_down` due to 18 previous errors; 2 warnings emitted
