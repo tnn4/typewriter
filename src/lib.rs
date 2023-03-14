@@ -1,8 +1,14 @@
+#[macro_use]
+extern crate lazy_static;
+
+
+
 use std::{thread, time};
 
 use std::fs;
 
 use std::path::Path;
+
 
 
 /** File Functions **/
@@ -22,12 +28,25 @@ pub fn mssleep(ms_to_wait: u64)
     thread::sleep(time_to_wait);
 }
 
+/// Takes two &str(string slices)/string literals and concatenates both
+pub fn cat(str1: &str, str2: &str) -> String {
+    format!("{}{}", str1, str2)
+}
+
 pub mod term {
+    use crate::cat;
+
     use std::io::{self, Write};
 
     use colored::Colorize;
     use colored::ColoredString;
     use colored::Color;
+
+    
+    lazy_static!
+    {
+        static ref PAUSE_TIME: u64 = 20;
+    }
 
     /** Type out text**/
     // Should probably combine these functions by letting it take a trait object
@@ -53,9 +72,9 @@ pub mod term {
         }
     }
 
-    pub fn type_text_colored(s: ColoredString)
+    pub fn type_color(s: ColoredString)
     {
-        let sleep_time = std::time::Duration::from_millis(50);
+        let sleep_time = std::time::Duration::from_millis(*PAUSE_TIME);
         for c in s.chars() {
             print!("{c}");
             std::io::stdout().flush().expect("Couldn't flush the terminal buffer!");
@@ -75,7 +94,7 @@ pub mod term {
     
 
     /* Test fn*/
-    fn analyze_colored_string(s: ColoredString)
+    pub fn analyze_colored_string(s: ColoredString)
     {
         let applied_color = s.fgcolor();
     
@@ -92,58 +111,97 @@ pub mod term {
         println!(" ");
     }
     
-    /* Type text for colored strings */
-    /// todo: add option to use different colors
-    /// might need dynamic dispatch here
-    /// or use a very long match function
-    /// I want to be able to take a function as argument
-    /// then apply that function to the input s
-    /// 
-    fn type_text_with_color2(s: String, color: &str)
+    pub fn type_text_colored(color: &str, s: &str)
     {
-        
+        let s2 = cat(s, " ");
+
         match color {
-            "red" => print!("RED!"),
+            "red" => {
+                println!("Found: {}", color);
+                type_colored_char(&s2, get_red_char);
+                
+                for n in 0..s2.len()-1 {
+                    // print!("{}", &s[n..n+1].red());
+                    print!("{}", get_red_char(&s2, n));
+                    std::io::stdout().flush().expect("Flushing to succeed");
+                    std::thread::sleep(std::time::Duration::from_millis(20));
+                }
+            },
+            "blue" => {
+                println!("Found: {}", color);
+                for n in 0..s2.len()-1 {
+                    // print!("{}", &s[n..n+1].red());
+                    print!("{}", get_blue_char(&s2, n));
+                    std::io::stdout().flush().expect("Flushing to succeed");
+                    std::thread::sleep(std::time::Duration::from_millis(20));
+                }
+            },
+            "green" => {
+                println!("Found: {}", color);
+                for n in 0..s2.len()-1 {
+                    // print!("{}", &s[n..n+1].red());
+                    print!("{}", get_green_char(&s2, n));
+                    std::io::stdout().flush().expect("Flushing to succeed");
+                    std::thread::sleep(std::time::Duration::from_millis(20));
+                }
+            }
+            ,
             _ => print!("No match")
         }
     
-        for n in 0..s.len()-1 {
-            // print!("{}", &s[n..n+1].red());
-            print!("{}", get_red_substring(&s, n));
-            std::io::stdout().flush().expect("Flushing to succeed");
-            std::thread::sleep(std::time::Duration::from_millis(20));
-        }
-        print!("{}", &s[s.len()-1..]);
+        
+
+        print!("{}", &s2[s2.len()-1..]);
         println!();
     }
     
-    fn type_colored_substring(s: &String, f: fn(s: &String, n: usize) -> ColoredString )
+    /// Takes a callback function
+    /// e.g. type_colored_char(|s2| get_red_char);
+    fn type_colored_char(string: &String, f: impl Fn(&String, usize) -> ColoredString )
     {
-        let sleep_time = std::time::Duration::from_millis(50);
-        for n in 0..=s.len()-1 {
+        let sleep_time = std::time::Duration::from_millis(20);
+        for i in 0..=string.len()-1 {
             // print!("{}", &s[n..n+1].red());
-            print!("{}", f(s,n));
+            print!("{}", f(string,i));
             std::io::stdout().flush().expect("Flushing to succeed");
             std::thread::sleep(sleep_time);
 
         }
     }
-    
+
+
     /* get_[colored]_substring() */
-    fn get_red_substring(s: &String, n: usize) -> ColoredString
+    fn get_red_char(s: &String, i: usize) -> ColoredString
     {
-        s[n..n+1].red()
+        s[i..i+1].red()
     }
     
-    fn get_green_substring(s: &String, n: usize) -> ColoredString
+    fn get_green_char(s: &String, i: usize) -> ColoredString
     {
-
-        s[n..n+1].green()
+        s[i..i+1].green()
     }
     
-    fn get_blue_substring(s: &String, n: usize) -> ColoredString
+    fn get_blue_char(s: &String, i: usize) -> ColoredString
     {
-        s[n..n+1].blue()
+        s[i..i+1].blue()
 
+    }
+    
+    fn get_char_colored(s: &String, n: usize, color: &str ){
+        match color {
+            "red" =>
+            {
+                println!("matched {}", color);
+            },
+            "green" => 
+            {
+                println!("matched {}", color);
+            },
+            "blue" => 
+            {
+                println!("matched {}", color);
+            },
+            _ => println!("No matching colors"),
+        }
     }
 }
