@@ -8,6 +8,7 @@ use std::fs;
 
 use std::path::Path;
 
+
 /* send a control character to clear terminal screen*/
 pub fn clear_console() {
     print!("{}[2J", 27 as char);
@@ -144,6 +145,26 @@ pub mod term {
                 }
                 */
             },
+            "oj" => {
+                #[cfg(debug_assertions)]
+                println!("Found: {}", color);
+                for n in 0..s2.len()-1 {
+                    // print!("{}", &s[n..n+1].red());
+                    print!("{}", get_oj_char(&s2, n));
+                    std::io::stdout().flush().expect("Flushing to succeed");
+                    std::thread::sleep(std::time::Duration::from_millis(20));
+                }                
+            },
+            "yellow" => {
+                #[cfg(debug_assertions)]
+                println!("Found: {}", color);
+                for n in 0..s2.len()-1 {
+                    // print!("{}", &s[n..n+1].red());
+                    print!("{}", get_yellow_char(&s2, n));
+                    std::io::stdout().flush().expect("Flushing to succeed");
+                    std::thread::sleep(std::time::Duration::from_millis(20));
+                }                
+            },
             "blue" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
@@ -163,8 +184,7 @@ pub mod term {
                     std::io::stdout().flush().expect("Flushing to succeed");
                     std::thread::sleep(std::time::Duration::from_millis(20));
                 }
-            }
-            ,
+            },
             _ => print!("No match")
         }
     
@@ -176,7 +196,8 @@ pub mod term {
     
     /// Takes a callback function
     /// e.g. type_colored_char(|s2| get_red_char);
-    fn type_colored_char(string: &String, f: impl Fn(&String, usize) -> ColoredString )
+    fn type_colored_char(string: &String, 
+        f: impl Fn(&String, usize) -> ColoredString)
     {
         let sleep_time = std::time::Duration::from_millis(20);
         for i in 0..=string.len()-1 {
@@ -184,7 +205,6 @@ pub mod term {
             print!("{}", f(string,i));
             std::io::stdout().flush().expect("Flushing to succeed");
             std::thread::sleep(sleep_time);
-
         }
     }
 
@@ -195,6 +215,17 @@ pub mod term {
         s[i..i+1].red()
     }
     
+    fn get_oj_char(s: &String, i: usize) -> ColoredString
+    {
+        s[i..i+1].truecolor(255,165,0)
+
+    }
+
+    fn get_yellow_char(s: &String, i: usize) -> ColoredString
+    {
+        s[i..i+1].yellow()
+    }
+
     fn get_green_char(s: &String, i: usize) -> ColoredString
     {
         s[i..i+1].green()
@@ -205,6 +236,8 @@ pub mod term {
         s[i..i+1].blue()
 
     }
+
+
     
     fn get_char_colored(s: &String, n: usize, color: &str ){
         match color {
