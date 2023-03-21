@@ -8,7 +8,10 @@ use std::fs;
 
 use std::path::Path;
 
-
+/* send a control character to clear terminal screen*/
+pub fn clear_console() {
+    print!("{}[2J", 27 as char);
+}
 
 /** File Functions **/
 fn read_file(path_to_file: &str) -> String{
