@@ -3,36 +3,37 @@ use std::{thread, time};
 
 use colored::Colorize;
 
-use typewriter::term::type_text_colored;
+use typewriter::term::typewriterc;
 use typewriter::clear_console;
 
 fn main() {
-    type_text_colored("red", "Forge World Graia");
-    type_text_colored("red", "Industrial output: Warlord Class Titan");
-    println!("{}","Strategic value absolute".red().blink());
+    typewriterc("red", "Forge World Graia\n");
+    typewriterc("red", "Industrial output: Warlord Class Titan\n");
+    println!("{}","Strategic value ABSOLUTE".red().blink());
     let blinky_red = "BLINKING RED".red().blink();
-    type_text_colored("oj", "Xenos invasion in progress");
-    type_text_colored("oj", "Recommended course of action?");
-    type_text_colored("red", "Negative, strategic value absolute");
+    typewriterc("oj", "Xenos invasion in progress");
+    typewriterc("oj", "Recommended course of action?");
+    typewriterc("oj", "Exterminatus?");
+    typewriterc("red", "Negative, strategic value ABSOLUTE");
     
-    type_text_colored("oj", "Deploy capital weaponry?");
-    type_text_colored("red", "negative estimated reduction in manufacturing output unacceptable");
+    typewriterc("oj", "Deploy capital weaponry?");
+    typewriterc("red", "negative estimated reduction in manufacturing output unacceptable");
     
-    type_text_colored("oj", "Liberation fleet?");
+    typewriterc("oj", "Liberation fleet?");
 
     println!("{}","Affirmative. Minor Elements in System. ETA = 5-37 days".red());
-    type_text_colored("oj", "Delay unacceptable");
+    typewriterc("oj", "Delay unacceptable");
 
-    type_text_colored("red", "Loss of strategic assets on GRAIA unacceptable.");
+    typewriterc("red", "Loss of strategic assets on GRAIA unacceptable.");
     println!("{}","Strategic value ABSOLUTE".red().blink());
 
-    type_text_colored("oj", "Escalate area of denial?");
-    type_text_colored("red", "Affirmative");
-    type_text_colored("oj", "Execute request order");
-    type_text_colored("oj", "ADEPTUS ASTARTES ULTRA");
+    typewriterc("oj", "Escalate area of denial?");
+    typewriterc("red", "Affirmative");
+    typewriterc("oj", "Execute request order");
+    typewriterc("oj", "ADEPTUS ASTARTES ULTRA");
     println!("{}","Response incoming".truecolor(255,165,0).blink());
     mssleep(2000);
-    type_text_colored("oj", "Deploying the Ultramarines.")
+    typewriterc("oj", "Deploying the Ultramarines.")
 
 
 }

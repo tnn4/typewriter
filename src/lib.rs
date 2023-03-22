@@ -33,12 +33,12 @@ pub fn mssleep(ms_to_wait: u64)
 }
 
 /// Takes two &str(string slices)/string literals and concatenates both then returns combined string
-pub fn cat(str1: &str, str2: &str) -> String {
+pub fn concat(str1: &str, str2: &str) -> String {
     format!("{}{}", str1, str2)
 }
 
 pub mod term {
-    use crate::cat;
+    use crate::concat;
 
     use std::io::{self, Write};
 
@@ -55,7 +55,7 @@ pub mod term {
     /** Type out text**/
     // Should probably combine these functions by letting it take a trait object
     /// Print out text with typewriter effect
-    pub fn type_text(s: &str) 
+    pub fn typewriter(s: &str) 
     {
         let ms = 50;
         let sleep_time = std::time::Duration::from_millis(ms);
@@ -67,7 +67,7 @@ pub mod term {
     }
     
     /// Print out text with typewriter effect in X ms
-    pub fn type_text_in_ms(s: &str, ms: u64) 
+    pub fn typewriterms(s: &str, ms: u64) 
     {
         
         let sleep_time = std::time::Duration::from_millis(ms);
@@ -78,7 +78,9 @@ pub mod term {
         }
     }
 
-    /// This doesn't work at all 
+    /// This doesn't work at all
+    /// Extracting the characters of the ColoredString means it loses
+    /// it's color information
     #[deprecated]
     pub fn type_color(s: ColoredString)
     {
@@ -90,7 +92,9 @@ pub mod term {
         }
     }
 
-    /// This doesn't work at all 
+    /// This doesn't work at all
+    /// Extracting the characters of the ColoredString means it loses
+    /// it's color information
     #[deprecated]
     fn type_text_colored_in_ms(s: ColoredString, ms: u64) 
     {
@@ -126,64 +130,39 @@ pub mod term {
     /// ```
     /// type_text_colored("red", "i'm red!!!");
     /// ```
-    pub fn type_text_colored(color: &str, s: &str)
+    pub fn typewriterc(color: &str, s: &str)
     {
-        let s2 = cat(s, " ");
+        let s2 = concat(s, " ");
 
         match color {
             "red" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
-                type_colored_char(&s2, get_red_char);
                 
-                /*
-                for n in 0..s2.len()-1 {
-                    // print!("{}", &s[n..n+1].red());
-                    print!("{}", get_red_char(&s2, n));
-                    std::io::stdout().flush().expect("Flushing to succeed");
-                    std::thread::sleep(std::time::Duration::from_millis(20));
-                }
-                */
+                type_colored_char(&s2, get_red_char);
             },
             "oj" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
-                for n in 0..s2.len()-1 {
-                    // print!("{}", &s[n..n+1].red());
-                    print!("{}", get_oj_char(&s2, n));
-                    std::io::stdout().flush().expect("Flushing to succeed");
-                    std::thread::sleep(std::time::Duration::from_millis(20));
-                }                
+
+                type_colored_char(&s2, get_oj_char);
+            
             },
             "yellow" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
-                for n in 0..s2.len()-1 {
-                    // print!("{}", &s[n..n+1].red());
-                    print!("{}", get_yellow_char(&s2, n));
-                    std::io::stdout().flush().expect("Flushing to succeed");
-                    std::thread::sleep(std::time::Duration::from_millis(20));
-                }                
+                
+                type_colored_char(&s2, get_yellow_char);              
             },
             "blue" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
-                for n in 0..s2.len()-1 {
-                    // print!("{}", &s[n..n+1].red());
-                    print!("{}", get_blue_char(&s2, n));
-                    std::io::stdout().flush().expect("Flushing to succeed");
-                    std::thread::sleep(std::time::Duration::from_millis(20));
-                }
+                type_colored_char(&s2, get_blue_char);
             },
             "green" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
-                for n in 0..s2.len()-1 {
-                    // print!("{}", &s[n..n+1].red());
-                    print!("{}", get_green_char(&s2, n));
-                    std::io::stdout().flush().expect("Flushing to succeed");
-                    std::thread::sleep(std::time::Duration::from_millis(20));
-                }
+                type_colored_char(&s2, get_green_char);
             },
             _ => print!("No match")
         }
@@ -199,7 +178,8 @@ pub mod term {
     fn type_colored_char(string: &String, 
         f: impl Fn(&String, usize) -> ColoredString)
     {
-        let sleep_time = std::time::Duration::from_millis(20);
+        let sleep_time = std::time::Duration::from_millis(50);
+        
         for i in 0..=string.len()-1 {
             // print!("{}", &s[n..n+1].red());
             print!("{}", f(string,i));
