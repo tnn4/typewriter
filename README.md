@@ -9,4 +9,5 @@ Check syntax errors
 
 Run examples
 
-`cargo run --example <example>`
+- debug: `cargo run --example <example>`
+- release: `cargo run --example <example> --release`
