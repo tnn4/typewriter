@@ -1,17 +1,51 @@
-#[macro_use]
+// #[macro_use]
 // Using this allows you to have static that required code to be executed at runtime in order to be initalized
-extern crate lazy_static;
+// extern crate lazy_static;
 
 use std::{thread, time};
 
 use std::fs;
 
-use std::path::Path;
+// use std::path::Path;
 
+pub struct StringBuilder {
+
+}
+
+impl StringBuilder {
+    pub fn concat(str1: &str, str2: &str) -> String {
+        format!("{}{}", str1, str2)
+    }
+}
+
+
+pub struct TypeWriter {
+
+}
+
+
+impl TypeWriter {
+    pub fn clear_console() {
+        print!("{}[2J", 27 as char)
+    }
+    pub fn clear_console2(){
+        print!("{}[2J", 33 as char)
+    }
+}
 
 /* send a control character to clear terminal screen*/
 pub fn clear_console() {
     print!("{}[2J", 27 as char);
+}
+
+/// see: https://stackoverflow.com/questions/2388090/how-to-delete-and-replace-last-line-in-the-terminal-using-bash
+pub fn clear_line() {
+    print!("{}[K", 33 as char);
+}
+
+/// see: https://stackoverflow.com/questions/28823788/how-do-i-clear-the-current-line-of-stdout
+pub fn clear_line2() {
+    print!("\r");
 }
 
 /** File Functions **/
@@ -26,7 +60,7 @@ fn print_file_contents(input: &String){
 }
 
 /// Sleep for milliseconds
-pub fn mssleep(ms_to_wait: u64)
+pub fn sleep_ms(ms_to_wait: u64)
 {
     let time_to_wait = time::Duration::from_millis(ms_to_wait);
     thread::sleep(time_to_wait);
@@ -47,10 +81,10 @@ pub mod term {
     use colored::Color;
 
     
-    lazy_static!
+    /* lazy_static!
     {
         static ref PAUSE_TIME: u64 = 20;
-    }
+    } */
 
     /** Type out text**/
     // Should probably combine these functions by letting it take a trait object
@@ -84,7 +118,8 @@ pub mod term {
     #[deprecated]
     pub fn type_color(s: ColoredString)
     {
-        let sleep_time = std::time::Duration::from_millis(*PAUSE_TIME);
+        const PAUSE_TIME_MS: u64 = 20;
+        let sleep_time = std::time::Duration::from_millis(PAUSE_TIME_MS);
         for c in s.chars() {
             print!("{c}");
             std::io::stdout().flush().expect("Couldn't flush the terminal buffer!");
@@ -130,7 +165,7 @@ pub mod term {
     /// ```
     /// type_text_colored("red", "i'm red!!!");
     /// ```
-    pub fn typewriterc(color: &str, s: &str)
+    pub fn typewritec(color: &str, s: &str)
     {
         let s2 = concat(s, " ");
 
@@ -138,20 +173,16 @@ pub mod term {
             "red" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
-                
                 type_colored_char(&s2, get_red_char);
             },
             "oj" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
-
-                type_colored_char(&s2, get_oj_char);
-            
+                type_colored_char(&s2, get_oj_char);      
             },
             "yellow" => {
                 #[cfg(debug_assertions)]
                 println!("Found: {}", color);
-                
                 type_colored_char(&s2, get_yellow_char);              
             },
             "blue" => {
@@ -173,7 +204,7 @@ pub mod term {
         println!();
     }
     
-    /// Takes a callback function
+    /// Takes callback function that prints desired color
     /// e.g. type_colored_char(|s2| get_red_char);
     fn type_colored_char(string: &String, 
         f: impl Fn(&String, usize) -> ColoredString)
@@ -186,51 +217,44 @@ pub mod term {
             std::io::stdout().flush().expect("Flushing to succeed");
             std::thread::sleep(sleep_time);
         }
+
     }
 
+    fn type_rotating_slash(){
+        let buffer="\\|/-";
+    }
 
     /* get_[colored]_substring() */
-    fn get_red_char(s: &String, i: usize) -> ColoredString
-    {
+    fn get_red_char(s: &String, i: usize) -> ColoredString{
         s[i..i+1].red()
     }
     
-    fn get_oj_char(s: &String, i: usize) -> ColoredString
-    {
+    fn get_oj_char(s: &String, i: usize) -> ColoredString {
         s[i..i+1].truecolor(255,165,0)
-
     }
 
-    fn get_yellow_char(s: &String, i: usize) -> ColoredString
-    {
+    fn get_yellow_char(s: &String, i: usize) -> ColoredString {
         s[i..i+1].yellow()
     }
 
-    fn get_green_char(s: &String, i: usize) -> ColoredString
-    {
+    fn get_green_char(s: &String, i: usize) -> ColoredString{
         s[i..i+1].green()
     }
     
-    fn get_blue_char(s: &String, i: usize) -> ColoredString
-    {
+    fn get_blue_char(s: &String, i: usize) -> ColoredString{
         s[i..i+1].blue()
-
     }
-
 
     
     fn get_char_colored(s: &String, n: usize, color: &str ){
         match color {
-            "red" =>
-            {
+            "red" => {
                 println!("matched {}", color);
             },
-            "green" => 
-            {
+            "green" => {
                 println!("matched {}", color);
             },
-            "blue" => 
-            {
+            "blue" => {
                 println!("matched {}", color);
             },
             _ => println!("No matching colors"),

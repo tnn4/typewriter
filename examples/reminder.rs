@@ -1,10 +1,10 @@
 use colored::Colorize;
 
-use typewriter::term::type_text_colored;
-use typewriter::clear_console;
+use tw::term::typewritec;
+use tw::clear_console;
 
 fn main() {
-    type_text_colored("red", "Urgent: Talk to the bank about maintenance fees.");
+    typewritec("red", "Urgent: Talk to the bank about maintenance fees.");
     let blinky_red = "BLINKING RED".red().blink();
     colored_example();
     println!("{}", blinky_red);
