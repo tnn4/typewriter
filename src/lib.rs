@@ -31,6 +31,10 @@ impl TypeWriter {
     pub fn clear_console2(){
         print!("{}[2J", 33 as char)
     }
+
+    //pub fn printc(color: &str, string: &str) {
+        //type_color_char2(color, string.as_string());
+    //}
 }
 
 /* send a control character to clear terminal screen*/
@@ -71,7 +75,25 @@ pub fn concat(str1: &str, str2: &str) -> String {
     format!("{}{}", str1, str2)
 }
 
-pub mod term {
+
+pub mod terminal {
+    /* send a control character to clear terminal screen*/
+    pub fn clear_console() {
+        print!("{}[2J", 27 as char);
+    }
+
+    /// see: https://stackoverflow.com/questions/2388090/how-to-delete-and-replace-last-line-in-the-terminal-using-bash
+    pub fn clear_line() {
+        print!("{}[K", 33 as char);
+    }
+
+    /// see: https://stackoverflow.com/questions/28823788/how-do-i-clear-the-current-line-of-stdout
+    pub fn clear_line2() {
+        print!("\r");
+    }
+}
+
+pub mod typewriter {
     use crate::concat;
 
     use std::io::{self, Write};
@@ -89,7 +111,7 @@ pub mod term {
     /** Type out text**/
     // Should probably combine these functions by letting it take a trait object
     /// Print out text with typewriter effect
-    pub fn typewriter(s: &str) 
+    pub fn typewrite(s: &str) 
     {
         let ms = 50;
         let sleep_time = std::time::Duration::from_millis(ms);
@@ -101,7 +123,7 @@ pub mod term {
     }
     
     /// Print out text with typewriter effect in X ms
-    pub fn typewriterms(s: &str, ms: u64) 
+    pub fn typewrite_in_ms(s: &str, ms: u64) 
     {
         
         let sleep_time = std::time::Duration::from_millis(ms);
@@ -128,7 +150,7 @@ pub mod term {
     }
 
     /// This doesn't work at all
-    /// Extracting the characters of the ColoredString means it loses
+    /// Extracting the characters of the ColoredString changes it to a char so it loses
     /// it's color information
     #[deprecated]
     fn type_text_colored_in_ms(s: ColoredString, ms: u64) 
@@ -160,10 +182,10 @@ pub mod term {
         println!(" ");
     }
     
-    /// Print out text with typewriter effect with a color
+    /// Print out text with typewriter effect and color
     /// e.g.
     /// ```
-    /// type_text_colored("red", "i'm red!!!");
+    /// typewritec("red", "i'm red!!!");
     /// ```
     pub fn typewritec(color: &str, s: &str)
     {
@@ -198,10 +220,13 @@ pub mod term {
             _ => print!("No match")
         }
     
-        
-
         print!("{}", &s2[s2.len()-1..]);
-        println!();
+        // println!();
+    }
+
+    pub fn typewritec2(color: &str, s: &str){
+        let s2 = concat(s, " ");
+        type_colored_char2(color, &s2);
     }
     
     /// Takes callback function that prints desired color
@@ -220,8 +245,32 @@ pub mod term {
 
     }
 
+    fn type_colored_char2(color: &str, string: &String) {
+        let sleep_time=std::time::Duration::from_millis(50);
+        let mut colored_char: ColoredString;
+        for i in 0..=string.len()-1 {
+            // string[i..i+1](doesn't have a size known at compile time) vs &string[i..i+1]
+            colored_char=get_charc(color, &string[i..i+1],i);
+            print!("{}", colored_char); // doesn't have a size known at compile time,strings cannot be indexed as usize because they're utf-8
+            std::io::stdout().flush().expect("Flushing to succeed");
+            std::thread::sleep(sleep_time);
+        }
+    }
+
     fn type_rotating_slash(){
         let buffer="\\|/-";
+    }
+
+    fn get_charc(color: &str, s: &str, idx: usize) -> ColoredString {
+        let char = &s[idx..idx+1];
+        match color {
+            "red"    => {char.red()},
+            "orange" => {char.truecolor(255,165,0)},
+            "yellow" => {char.yellow()},
+            "green"  => {char.green()},
+            "blue"   => {char.blue()},
+            _        => {char.white()},
+        }
     }
 
     /* get_[colored]_substring() */
